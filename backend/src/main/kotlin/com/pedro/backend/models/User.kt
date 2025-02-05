@@ -1,10 +1,11 @@
 package com.pedro.backend.models
 
+import com.pedro.backend.common.Role
 import jakarta.persistence.*
 
 @Entity
 @Table(name = "users")
-class User(
+data class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
@@ -16,5 +17,10 @@ class User(
     val password: String,
 
     @Column(nullable = false)
-    val email: String
+    val email: String,
+
+    @ElementCollection(targetClass = Role::class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_roles", joinColumns = [JoinColumn(name = "user_id")])
+    @Enumerated(EnumType.STRING)
+    val roles: Set<Role>
 )
