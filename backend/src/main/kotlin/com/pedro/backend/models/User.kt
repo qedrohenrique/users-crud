@@ -7,8 +7,9 @@ import jakarta.persistence.*
 @Table(name = "users")
 data class User(
     @Id
+    @Column(nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val id: Long,
 
     @Column(nullable = false, unique = true)
     val username: String,
