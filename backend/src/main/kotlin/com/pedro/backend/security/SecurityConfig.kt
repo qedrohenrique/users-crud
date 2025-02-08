@@ -53,7 +53,7 @@ class SecurityConfig {
         http.csrf { csrf -> csrf.disable() }
             .authorizeHttpRequests { auth ->
             auth.requestMatchers(HttpMethod.POST, "/auth").permitAll()
-                .requestMatchers("/users/create" ,"/users/delete", "/users/update").hasRole(Role.ADMIN.name)
+                .requestMatchers("/users/create" ,"/users/delete").hasRole(Role.ADMIN.name)
                 .anyRequest().authenticated()
             }
             .httpBasic(Customizer.withDefaults())
