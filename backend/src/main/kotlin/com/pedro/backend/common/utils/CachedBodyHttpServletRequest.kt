@@ -1,4 +1,4 @@
-package com.pedro.backend.utils
+package com.pedro.backend.common.utils
 
 import jakarta.servlet.ReadListener
 import jakarta.servlet.ServletInputStream
