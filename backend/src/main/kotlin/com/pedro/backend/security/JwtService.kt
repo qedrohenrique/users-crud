@@ -20,14 +20,14 @@ class JwtService(
         val now: Instant = Instant.now()
         val tokenLifetime = 3600L
 
-        val scope = authentication.authorities.map { it.authority }
+        val role = authentication.authorities.first().authority
 
         val claims: JwtClaimsSet = JwtClaimsSet.builder()
             .issuer("pedro-backend")
             .issuedAt(now)
             .expiresAt(now.plusSeconds(tokenLifetime))
             .subject(authentication.name)
-            .claim("scope", scope)
+            .claim("role", role)
             .build()
 
         return jwtEncoder.encode(JwtEncoderParameters.from(claims)).tokenValue

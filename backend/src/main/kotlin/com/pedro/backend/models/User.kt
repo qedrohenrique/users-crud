@@ -7,9 +7,8 @@ import jakarta.persistence.*
 @Table(name = "users")
 data class User(
     @Id
-    @Column(nullable = false, unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long = 0,
 
     @Column(nullable = false, unique = true)
     val username: String,
@@ -20,8 +19,7 @@ data class User(
     @Column(nullable = false)
     val email: String,
 
-    @ElementCollection(targetClass = Role::class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_roles", joinColumns = [JoinColumn(name = "user_id")])
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    val roles: Set<Role>
+    val role: Role = Role.USER
 )

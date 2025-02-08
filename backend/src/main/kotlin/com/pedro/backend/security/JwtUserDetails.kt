@@ -9,7 +9,7 @@ class JwtUserDetails(
     private val user: User
 ): UserDetails {
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        return user.roles.map { SimpleGrantedAuthority(it.name) }.toMutableSet()
+        return mutableListOf(SimpleGrantedAuthority(user.role?.name))
     }
 
     override fun getPassword(): String {
