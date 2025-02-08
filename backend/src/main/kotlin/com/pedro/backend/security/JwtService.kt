@@ -18,7 +18,7 @@ class JwtService(
 
     fun generateToken(authentication: Authentication): String {
         val now: Instant = Instant.now()
-        val tokenLifetime = 3600L
+        val tokenLifetime = 36000L
 
         val role = authentication.authorities.first().authority
 

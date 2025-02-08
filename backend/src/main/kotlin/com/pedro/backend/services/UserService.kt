@@ -28,4 +28,9 @@ class UserService(
         val user = User(email = registerUserDto.email, username = registerUserDto.username, password = hashedPassword, role = role)
         return UserDto.fromUser(userRepository.save(user))
     }
+
+    fun deleteUser(id: String) {
+        val user = userRepository.findById(id.toLong()).get()
+        userRepository.delete(user)
+    }
 }

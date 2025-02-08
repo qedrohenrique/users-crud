@@ -20,4 +20,10 @@ class UsersController(
     fun createUser(@RequestBody registerUserDto: RegisterUserDto): ResponseEntity<UserDto> {
         return ResponseEntity.ok(userService.createUser(registerUserDto))
     }
+
+    @DeleteMapping("/delete/{id}")
+    fun deleteUser(@PathVariable id: String): ResponseEntity<String> {
+        userService.deleteUser(id)
+        return ResponseEntity.ok("Deleted user with id: $id")
+    }
 }
