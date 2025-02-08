@@ -1,5 +1,6 @@
 package com.pedro.backend.security
 
+import com.pedro.backend.middlewares.LoggingFilter
 import com.nimbusds.jose.jwk.JWK
 import com.nimbusds.jose.jwk.JWKSet
 import com.nimbusds.jose.jwk.RSAKey
@@ -47,13 +48,16 @@ class SecurityConfig {
 
     @Bean
     @Throws(Exception::class)
-    fun filterChain(http: HttpSecurity, authenticationProvider: AuthenticationProvider,
-                    jwtAuthenticationFilter: JwtAuthenticationFilter
+    fun filterChain(
+        http: HttpSecurity,
+        authenticationProvider: AuthenticationProvider,
+        jwtAuthenticationFilter: JwtAuthenticationFilter,
+        loggingFilter: LoggingFilter
     ): SecurityFilterChain {
         http.csrf { csrf -> csrf.disable() }
             .authorizeHttpRequests { auth ->
             auth.requestMatchers(HttpMethod.POST, "/auth").permitAll()
-                .requestMatchers("/users/create" ,"/users/delete").hasRole(Role.ADMIN.name)
+                .requestMatchers("/users/create" ,"/users/delete", "/users/list", "/logs/list").hasRole(Role.ADMIN.name)
                 .anyRequest().authenticated()
             }
             .httpBasic(Customizer.withDefaults())
@@ -65,6 +69,7 @@ class SecurityConfig {
             }
             .authenticationProvider(authenticationProvider)
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter::class.java)
+            .addFilterBefore(loggingFilter, UsernamePasswordAuthenticationFilter::class.java)
         return http.build()
     }
 

@@ -5,6 +5,8 @@ import com.pedro.backend.dto.RegisterUserDto
 import com.pedro.backend.dto.UserDto
 import com.pedro.backend.models.User
 import com.pedro.backend.repositories.UserRepository
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
@@ -13,8 +15,9 @@ class UserService(
     private val userRepository: UserRepository,
     private val passwordEncoder: PasswordEncoder
 ) {
-    fun getAll(): List<UserDto> {
-        return userRepository.findAll().map { user -> UserDto.fromUser(user) }
+    fun getAll(page: Int, size: Int): Page<UserDto> {
+        val pageable = PageRequest.of(page, size)
+        return userRepository.findAll(pageable).map { user -> UserDto.fromUser(user) }
     }
 
     fun createUser(registerUserDto: RegisterUserDto): UserDto {
