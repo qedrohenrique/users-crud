@@ -2,8 +2,6 @@ package com.pedro.backend.controllers
 
 import com.pedro.backend.dto.RegisterUserDto
 import com.pedro.backend.dto.UserDto
-import com.pedro.backend.models.User
-import com.pedro.backend.repositories.UserRepository
 import com.pedro.backend.services.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
