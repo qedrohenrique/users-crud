@@ -55,7 +55,9 @@ class SecurityConfig {
         jwtAuthenticationFilter: JwtAuthenticationFilter,
         loggingFilter: LoggingFilter
     ): SecurityFilterChain {
-        http.csrf { csrf -> csrf.disable() }
+        http
+            .cors { }
+            .csrf { csrf -> csrf.disable() }
             .authorizeHttpRequests { auth ->
             auth.requestMatchers(HttpMethod.POST, "/auth").permitAll()
                 .requestMatchers("/users/create" ,"/users/delete", "/users/list", "/logs/list").hasRole(Role.ADMIN.name)
@@ -77,15 +79,13 @@ class SecurityConfig {
     @Bean
     fun corsConfigurationSource(): CorsConfigurationSource {
         val configuration = CorsConfiguration()
-
-        configuration.allowedOrigins = listOf("http://localhost:8005")
-        configuration.allowedMethods = listOf("GET", "POST")
+        configuration.allowedOrigins = listOf("http://localhost:3000")
+        configuration.allowedMethods = listOf("GET", "POST", "OPTIONS")
         configuration.allowedHeaders = listOf("Authorization", "Content-Type")
+        configuration.allowCredentials = true
 
         val source = UrlBasedCorsConfigurationSource()
-
         source.registerCorsConfiguration("/**", configuration)
-
         return source
     }
 
