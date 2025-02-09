@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   const { token } = await req.json();
-  console.log("DSADS")
+
   if (!token) {
     return NextResponse.json({ error: "Token not provided" }, { status: 400 });
   }
