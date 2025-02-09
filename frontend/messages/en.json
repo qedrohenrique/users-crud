@@ -1,0 +1,12 @@
+{
+  "Home": {
+    "cuteMessage": "In every line of code in a CRUD, we are not just creating users, but opening doors to new stories, connections, and possibilities.",
+    "mottoAuthor": "GPT, Chat",
+    "loginForm": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "button": "Login"
+    }
+  }
+}
