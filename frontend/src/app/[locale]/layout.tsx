@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+import ReactQueryProvider from "@/lib/providers/react-query-provider";
+import { AuthProvider } from "@/lib/providers/auth-provider";
+import ThemeProvider from "@/lib/providers/theme-provider";
+import { getDictionary } from "../../lib/dictionaries";
+import DictionaryProvider from "@/lib/providers/dictionary-provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -13,24 +17,35 @@ export const metadata: Metadata = {
   description: "A CRUD dashboard for managing users",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  params,
+}: {
+  children: React.ReactNode
+  params: { locale: 'en' | 'pt' }
+}) {
+  const locale = (await params).locale
+  const dictionary = await getDictionary(locale)
+
   return (
-    <html lang='en'>
+    <html lang={locale}>
       <body
         className={`${inter.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <AuthProvider>
+          <ReactQueryProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <DictionaryProvider dictionary={dictionary}>
+                {children}
+              </DictionaryProvider>
+            </ThemeProvider>
+          </ReactQueryProvider>
+        </AuthProvider>
       </body>
     </html>
   );
