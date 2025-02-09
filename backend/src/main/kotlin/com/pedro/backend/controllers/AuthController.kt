@@ -1,5 +1,7 @@
 package com.pedro.backend.controllers
 
+import com.pedro.backend.common.Login
+import com.pedro.backend.dto.JwtDto
 import com.pedro.backend.security.JwtService
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager
@@ -14,16 +16,11 @@ class AuthController(
     private val jwtService: JwtService
 ) {
     @PostMapping("/auth")
-    fun authenticate(@RequestBody request: AuthenticationRequest): ResponseEntity<String> {
+    fun authenticate(@RequestBody request: Login): ResponseEntity<JwtDto> {
         val authentication = authenticationManager.authenticate(
             UsernamePasswordAuthenticationToken(request.username, request.password)
         )
         val jwt = jwtService.generateToken(authentication)
-        return ResponseEntity.ok(jwt)
+        return ResponseEntity.ok(JwtDto(jwt))
     }
 }
-
-data class AuthenticationRequest(
-    val username: String,
-    val password: String
-)
