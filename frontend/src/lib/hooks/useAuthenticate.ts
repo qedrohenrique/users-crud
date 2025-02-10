@@ -3,6 +3,8 @@
 import { AuthContext } from "@/lib/providers/auth-provider";
 import { useContext } from "react";
 import { useMutation } from "@tanstack/react-query";
+import { redirect, useRouter } from "@/i18n/routing";
+import { useLocale } from "next-intl";
 
 const API_ROUTE = "http://localhost:8080"
 
@@ -30,6 +32,7 @@ export const useAuth = () => {
 
 export const useLogin = () => {
   const { setToken } = useAuth();
+  const locale = useLocale();
 
   return useMutation({
     mutationFn: loginRequest,
@@ -40,6 +43,9 @@ export const useLogin = () => {
         body: JSON.stringify({ token: data.token }),
         headers: { "Content-Type": "application/json" },
       })
+      .then(() => {
+        redirect({ href: "/", locale: locale });
+      });
     },
   });
 };

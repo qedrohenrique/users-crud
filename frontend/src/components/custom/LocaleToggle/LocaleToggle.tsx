@@ -2,7 +2,6 @@
 
 import { Toggle } from "@/components/ui/toggle";
 import { usePathname, useRouter } from '@/i18n/routing';
-import { Moon, Sun } from "lucide-react";
 import { useLocale } from "next-intl";
 import { useParams } from "next/navigation";
 import { useTransition } from "react";

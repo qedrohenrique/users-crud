@@ -11,11 +11,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input"
 import loginSchema from "@/components/zod/loginSchema";
-import { useLogin } from "@/lib/hooks/useAuthenticate";
+import { redirect } from "@/i18n/routing";
+import { useAuth, useLogin } from "@/lib/hooks/useAuthenticate";
 import { useDictionary } from "@/lib/providers/dictionary-provider";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LoaderCircle } from "lucide-react";
-import React from "react";
+import { useLocale } from "next-intl";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
