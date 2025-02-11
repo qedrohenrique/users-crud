@@ -15,7 +15,7 @@ class UsersController(
     @GetMapping("/list")
     fun getUsers(
         @RequestParam(defaultValue = "0") page: Int,
-        @RequestParam(defaultValue = "10") size: Int,
+        @RequestParam(defaultValue = "5") size: Int,
     ): ResponseEntity<Page<UserDto>> {
         return ResponseEntity.ok(userService.getAll(page, size))
     }
