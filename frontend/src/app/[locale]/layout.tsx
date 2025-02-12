@@ -6,6 +6,7 @@ import { AuthProvider } from "@/lib/providers/auth-provider";
 import ThemeProvider from "@/lib/providers/theme-provider";
 import { getDictionary } from "../../lib/dictionaries";
 import DictionaryProvider from "@/lib/providers/dictionary-provider";
+import { useTheme } from "next-themes";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,25 +29,25 @@ export default async function RootLayout({
   const dictionary = await getDictionary(locale)
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className='dark'>
       <body
         className={`${inter.variable} antialiased`}
       >
-        <AuthProvider>
-          <ReactQueryProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthProvider>
+            <ReactQueryProvider>
               <DictionaryProvider dictionary={dictionary}>
                 {children}
               </DictionaryProvider>
-            </ThemeProvider>
-          </ReactQueryProvider>
-        </AuthProvider>
+            </ReactQueryProvider>
+          </AuthProvider>
+        </ThemeProvider>
       </body>
-    </html>
+    </html >
   );
 }

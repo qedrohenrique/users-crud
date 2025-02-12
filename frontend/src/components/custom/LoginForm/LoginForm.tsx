@@ -20,6 +20,7 @@ import { useLocale } from "next-intl";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import LoadingIcon from "../LoadingIcon/LoadingIcon";
 
 export const LoginForm = () => {
   const dictionary = useDictionary()
@@ -68,14 +69,8 @@ export const LoginForm = () => {
         />
         <Button type="submit">
           {loginMutation.isPending ?
-            <LoaderCircle
-              color="black"
-              className="animate-spin"
-              size={16}
-              strokeWidth={2}
-              role="status"
-              aria-label="Loading..."
-            /> : dictionary.AuthPage.loginForm.login}
+            <LoadingIcon override='text-primary-foreground'/>
+            : dictionary.AuthPage.loginForm.login}
         </Button>
       </form>
     </Form>

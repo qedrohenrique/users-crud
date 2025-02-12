@@ -1,6 +1,16 @@
+import { ThemeProvider } from "next-themes"
+
 const NotFoundPage = () => {
   return (
-    <>404 not found</>
+    <>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange>
+        404 not found
+      </ThemeProvider>
+    </>
   )
 }
 
