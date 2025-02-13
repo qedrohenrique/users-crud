@@ -7,6 +7,7 @@ import ThemeProvider from "@/lib/providers/theme-provider";
 import { getDictionary } from "../../lib/dictionaries";
 import DictionaryProvider from "@/lib/providers/dictionary-provider";
 import { useTheme } from "next-themes";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -42,7 +43,9 @@ export default async function RootLayout({
           <AuthProvider>
             <ReactQueryProvider>
               <DictionaryProvider dictionary={dictionary}>
-                {children}
+                <TooltipProvider>
+                  {children}
+                </TooltipProvider>
               </DictionaryProvider>
             </ReactQueryProvider>
           </AuthProvider>

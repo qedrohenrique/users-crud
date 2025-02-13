@@ -9,7 +9,7 @@ import LoadingIcon from "../LoadingIcon/LoadingIcon";
 const UsersTable = () => {
   const [selectedPage, setSelectedPage] = useState(0)
 
-  const { data, isLoading } = useGetUsers(selectedPage)
+  const { data, isLoading } = useGetUsers(selectedPage, 10)
   const users = data?.content
 
   const onPageChange = (page: number) => {
@@ -19,7 +19,7 @@ const UsersTable = () => {
   return (
     <div className="space-y-4 flex flex-col justify-between h-72">
       <Table>
-        <TableHeader>
+        <TableHeader className="sticky top-0 z-10 bg-primary-foreground">
           <TableRow>
             <TableHead>ID</TableHead>
             <TableHead>Username</TableHead>

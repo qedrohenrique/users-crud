@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import { User } from "../common-types/user";
 import { UseQueryResult } from "@tanstack/react-query";
 import { Page } from "../common-types/page";
+import { Log } from "../common-types/log";
 
 const API_ROUTE = "http://localhost:8080";
 
-const getUsersRequest = async (selectedPage: number, size: number) => {
+const getLogsRequest = async (selectedPage: number, size: number) => {
   const { token } = await fetch("/api/get-cookie").then((res) => res.json());
 
-  const response = await fetch(`${API_ROUTE}/users/list?page=${selectedPage}&size=${size}`, {
+  const response = await fetch(`${API_ROUTE}/logs/list?page=${selectedPage}&size=${size}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -23,9 +23,9 @@ const getUsersRequest = async (selectedPage: number, size: number) => {
   return response.json();
 };
 
-export const useGetUsers = (selectedPage: number, size: number): UseQueryResult<Page<User>, Error> => {
+export const useGetLogs = (selectedPage: number, size: number): UseQueryResult<Page<Log>, Error> => {
   return useQuery({
-    queryKey: ["getUsers", selectedPage],
-    queryFn: () => getUsersRequest(selectedPage, size),
+    queryKey: ["getLogs", selectedPage],
+    queryFn: () => getLogsRequest(selectedPage, size),
   });
 };
