@@ -16,7 +16,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="shadow-md dark:shadow-sm dark:shadow-white p-4">
+    <nav className="sticky top-0 bg-white dark:bg-black z-[50] shadow-md dark:shadow-sm dark:shadow-white p-4">
       <div className="container mx-auto flex items-center justify-between">
         <a href="/" className="text-xl font-bold">
           <Logo />
