@@ -9,18 +9,17 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/input";
 import loginSchema from "@/components/zod/loginSchema";
-import { redirect } from "@/i18n/routing";
-import { useAuth, useLogin } from "@/lib/hooks/useAuthenticate";
+import { useLogin } from "@/lib/hooks/useAuthenticate";
 import { useDictionary } from "@/lib/providers/dictionary-provider";
-import { zodResolver } from "@hookform/resolvers/zod"
-import { LoaderCircle } from "lucide-react";
-import { useLocale } from "next-intl";
-import React, { useEffect } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import LoadingIcon from "../LoadingIcon/LoadingIcon";
+import InputPassword from "@/components/ui/input-password";
+import InputIcon from "@/components/ui/input-icon";
+import { User } from "lucide-react";
 
 export const LoginForm = () => {
   const dictionary = useDictionary()
@@ -48,7 +47,7 @@ export const LoginForm = () => {
             <FormItem>
               <FormLabel>{dictionary.AuthPage.loginForm.username}</FormLabel>
               <FormControl>
-                <Input placeholder={dictionary.AuthPage.loginForm.username} {...field} />
+                <InputIcon icon={<User />} placeholder={dictionary.AuthPage.loginForm.username} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -61,7 +60,7 @@ export const LoginForm = () => {
             <FormItem>
               <FormLabel>{dictionary.AuthPage.loginForm.password}</FormLabel>
               <FormControl>
-                <Input placeholder={dictionary.AuthPage.loginForm.password} {...field} />
+                <InputPassword placeholder={dictionary.AuthPage.loginForm.password} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -69,7 +68,7 @@ export const LoginForm = () => {
         />
         <Button type="submit">
           {loginMutation.isPending ?
-            <LoadingIcon override='text-primary-foreground'/>
+            <LoadingIcon override='text-primary-foreground' />
             : dictionary.AuthPage.loginForm.login}
         </Button>
       </form>

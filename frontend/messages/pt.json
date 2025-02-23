@@ -7,5 +7,63 @@
       "username": "Nome de suário",
       "password": "Senha"
     }
+  },
+  "HomePage": {
+    "addUserDialog": {
+      "title": "Adicionar usuário",
+      "description": "Adicionar um novo usuário",
+      "username": "Nome de usuário",
+      "email": "E-mail",
+      "password": "Senha",
+      "role": "Função",
+      "cancel": "Cancelar",
+      "add": "Adicionar",
+      "error": "Erro ao adicionar usuário",
+      "success": "Usuário adicionado com sucesso"
+    },
+    "removeUserDialog": {
+      "title": "Remover usuário",
+      "description": "Remover um usuário do banco de dados",
+      "placeholder": "Selecione um ID",
+      "cancel": "Cancelar",
+      "remove": "Remover",
+      "error": "Erro ao remover usuário",
+      "success": "Usuário removido com sucesso"
+    },
+    "usersTable": {
+      "page": "Página",
+      "of": "de",
+      "columns": {
+        "id": "ID",
+        "username": "Nome de usuário",
+        "email": "E-mail",
+        "role": "Função",
+        "createdAt": "Created em"
+      },
+      "actions": {
+        "next": "Próximo",
+        "previous": "Anterior",
+        "add": "Adicionar",
+        "delete": "Excluir"
+      }
+    },
+    "logsTable": {
+      "page": "Página",
+      "of": "de",
+      "columns": {
+        "id": "ID",
+        "method": "Método",
+        "username": "Nome de usuário",
+        "body": "Corpo",
+        "path": "Caminho",
+        "createdAt": "Criado em"
+      },
+      "actions": {
+        "next": "Próximo",
+        "previous": "Anterior",
+        "add": "Adicionar",
+        "delete": "Excluir"
+      }
+    }
   }
 }

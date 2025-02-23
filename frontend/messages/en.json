@@ -7,5 +7,63 @@
       "username": "Username",
       "password": "Password"
     }
+  },
+  "HomePage": {
+    "addUserDialog": {
+      "title": "Add User",
+      "description": "Add a new user",
+      "username": "Username",
+      "email": "E-mail",
+      "password": "Password",
+      "role": "Role",
+      "cancel": "Cancel",
+      "add": "Add",
+      "error": "Error adding user",
+      "success": "User added successfully"
+    },
+    "removeUserDialog": {
+      "title": "Remove user",
+      "description": "Remove an user from database",
+      "placeholder": "Select an ID",
+      "cancel": "Cancel",
+      "remove": "Remove",
+      "error": "Error removing user",
+      "success": "User removed successfully"
+    },
+    "usersTable": {
+      "page": "Page",
+      "of": "of",
+      "columns": {
+        "id": "ID",
+        "username": "Username",
+        "email": "E-mail",
+        "role": "Role",
+        "createdAt": "Created At"
+      },
+      "actions": {
+        "next": "Next",
+        "previous": "Previous",
+        "add": "Add",
+        "delete": "Delete"
+      }
+    },
+    "logsTable": {
+      "page": "Page",
+      "of": "of",
+      "columns": {
+        "id": "ID",
+        "method": "Method",
+        "username": "Username",
+        "body": "Body",
+        "path": "Path",
+        "createdAt": "Created at"
+      },
+      "actions": {
+        "next": "Next",
+        "previous": "Previous",
+        "add": "Add",
+        "delete": "Delete"
+      }
+    }
   }
 }

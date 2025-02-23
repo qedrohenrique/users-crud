@@ -1,33 +1,45 @@
 'use client'
 
 import { Button } from "@/components/ui/button";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { useState } from "react";
-import LoadingIcon from "../LoadingIcon/LoadingIcon";
-import { useGetLogs } from "@/lib/hooks/useLogs";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { useGetLogs } from "@/lib/hooks/useLogs";
+import { useDictionary } from "@/lib/providers/dictionary-provider";
+import { RefreshCcw } from "lucide-react";
+import { useEffect, useState } from "react";
+import LoadingIcon from "../LoadingIcon/LoadingIcon";
+import { Log } from "@/lib/common-types/log";
 
 const LogsTable = () => {
+  const dictionary = useDictionary();
+  const [logs, setLogs] = useState<Log[]>([])
+
   const [selectedPage, setSelectedPage] = useState(0)
 
-  const { data, isLoading } = useGetLogs(selectedPage, 10)
-  const logs = data?.content
+  const { data, isLoading, refetch } = useGetLogs(selectedPage, 10)
 
   const onPageChange = (page: number) => {
     setSelectedPage(page)
   }
 
+  useEffect(() => {
+    setLogs(data?.content || [])
+  }, [data])
+
   return (
     <div className="space-y-4 flex flex-col justify-between h-72">
+      <div className='flex flex-row justify-end items-center w-full'>
+        <Button onClick={() => refetch()}><RefreshCcw /></Button>
+      </div>
       <Table>
         <TableHeader className="sticky top-0 z-10 bg-primary-foreground">
           <TableRow>
-            <TableHead>ID</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead>Username</TableHead>
-            <TableHead className='w-80'>Body</TableHead>
-            <TableHead>Path</TableHead>
-            <TableHead className='w-[10rem]'>Created at</TableHead>
+            <TableHead>{dictionary.HomePage.logsTable.columns.id}</TableHead>
+            <TableHead>{dictionary.HomePage.logsTable.columns.method}</TableHead>
+            <TableHead>{dictionary.HomePage.logsTable.columns.username}</TableHead>
+            <TableHead className='w-80'>{dictionary.HomePage.logsTable.columns.body}</TableHead>
+            <TableHead>{dictionary.HomePage.logsTable.columns.path}</TableHead>
+            <TableHead className='w-[10rem]'>{dictionary.HomePage.logsTable.columns.createdAt}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -69,15 +81,15 @@ const LogsTable = () => {
           disabled={data?.first}
           onClick={() => onPageChange(selectedPage - 1)}
         >
-          Previous
+          {dictionary.HomePage.usersTable.actions.previous}
         </Button>
-        <span>Page {selectedPage + 1} of {data?.totalPages}</span>
+        <span>{dictionary.HomePage.usersTable.page} {selectedPage + 1} {dictionary.HomePage.usersTable.of} {data?.totalPages}</span>
         <Button
           variant='outline'
           disabled={data?.last}
           onClick={() => onPageChange(selectedPage + 1)}
         >
-          Next
+          {dictionary.HomePage.usersTable.actions.next}
         </Button>
       </div>
     </div>

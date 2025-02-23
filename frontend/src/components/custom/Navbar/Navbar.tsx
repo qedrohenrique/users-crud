@@ -1,12 +1,12 @@
 'use client'
 
 import { Button } from "@/components/ui/button";
-import { LogOut } from "lucide-react";
-import Logo from "../Logo/Logo";
-import LocaleToggle from "../LocaleToggle/LocaleToggle";
-import ModeToggle from "../ModeToggle/ModeToggle";
 import { useDeleteCookie } from "@/lib/hooks/useAuthenticate";
+import { LogOut } from "lucide-react";
 import LoadingIcon from "../LoadingIcon/LoadingIcon";
+import LocaleToggle from "../LocaleToggle/LocaleToggle";
+import Logo from "../Logo/Logo";
+import ModeToggle from "../ModeToggle/ModeToggle";
 
 const Navbar = () => {
   const deleteMutation = useDeleteCookie();

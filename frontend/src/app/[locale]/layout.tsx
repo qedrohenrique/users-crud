@@ -1,13 +1,13 @@
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { AuthProvider } from "@/lib/providers/auth-provider";
+import DictionaryProvider from "@/lib/providers/dictionary-provider";
+import ReactQueryProvider from "@/lib/providers/react-query-provider";
+import ThemeProvider from "@/lib/providers/theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import ReactQueryProvider from "@/lib/providers/react-query-provider";
-import { AuthProvider } from "@/lib/providers/auth-provider";
-import ThemeProvider from "@/lib/providers/theme-provider";
 import { getDictionary } from "../../lib/dictionaries";
-import DictionaryProvider from "@/lib/providers/dictionary-provider";
-import { useTheme } from "next-themes";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -45,6 +45,7 @@ export default async function RootLayout({
               <DictionaryProvider dictionary={dictionary}>
                 <TooltipProvider>
                   {children}
+                  <Toaster />
                 </TooltipProvider>
               </DictionaryProvider>
             </ReactQueryProvider>

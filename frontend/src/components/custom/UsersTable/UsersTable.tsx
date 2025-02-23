@@ -1,30 +1,47 @@
 'use client'
 
 import { Button } from "@/components/ui/button";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useGetUsers } from "@/lib/hooks/useUsers";
-import { useState } from "react";
+import { useDictionary } from "@/lib/providers/dictionary-provider";
+import { useEffect, useState } from "react";
+import { CreateUserDialog } from "../CreateUserDialog/CreateUserDialog";
 import LoadingIcon from "../LoadingIcon/LoadingIcon";
+import { User } from "@/lib/common-types/user";
+import { RefreshCcw } from "lucide-react";
+import { DeleteUserDialog } from "../DeleteUserDialog/DeleteUserDialog";
 
 const UsersTable = () => {
+  const dictionary = useDictionary();
   const [selectedPage, setSelectedPage] = useState(0)
+  const [users, setUsers] = useState<User[]>([])
 
-  const { data, isLoading } = useGetUsers(selectedPage, 10)
-  const users = data?.content
+  const { data, isLoading, refetch } = useGetUsers(selectedPage, 10)
 
   const onPageChange = (page: number) => {
     setSelectedPage(page)
   }
 
+  useEffect(() => {
+    setUsers(data?.content || [])
+  }, [data])
+
   return (
     <div className="space-y-4 flex flex-col justify-between h-72">
+      <div className='flex flex-row justify-between items-center w-full'>
+        <div className='flex flex-row gap-4'>
+          <CreateUserDialog refetch={refetch} />
+          <DeleteUserDialog users={users} refetch={refetch} />
+        </div>
+        <Button onClick={() => refetch()}><RefreshCcw/></Button>
+      </div>
       <Table>
         <TableHeader className="sticky top-0 z-10 bg-primary-foreground">
           <TableRow>
-            <TableHead>ID</TableHead>
-            <TableHead>Username</TableHead>
-            <TableHead>E-mail</TableHead>
-            <TableHead>Role</TableHead>
+            <TableHead>{dictionary.HomePage.usersTable.columns.id}</TableHead>
+            <TableHead>{dictionary.HomePage.usersTable.columns.username}</TableHead>
+            <TableHead>{dictionary.HomePage.usersTable.columns.email}</TableHead>
+            <TableHead>{dictionary.HomePage.usersTable.columns.role}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -55,15 +72,15 @@ const UsersTable = () => {
           disabled={data?.first}
           onClick={() => onPageChange(selectedPage - 1)}
         >
-          Previous
+          {dictionary.HomePage.usersTable.actions.previous}
         </Button>
-        <span>Page {selectedPage + 1} of {data?.totalPages}</span>
+        <span>{dictionary.HomePage.usersTable.page} {selectedPage + 1} {dictionary.HomePage.usersTable.of} {data?.totalPages}</span>
         <Button
           variant='outline'
           disabled={data?.last}
           onClick={() => onPageChange(selectedPage + 1)}
         >
-          Next
+          {dictionary.HomePage.usersTable.actions.next}
         </Button>
       </div>
     </div>

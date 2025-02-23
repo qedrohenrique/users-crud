@@ -1,10 +1,10 @@
 "use client";
 
+import { useRouter } from "@/i18n/routing";
 import { AuthContext } from "@/lib/providers/auth-provider";
-import { useContext } from "react";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import { redirect, useRouter } from "@/i18n/routing";
 import { useLocale } from "next-intl";
+import { useContext } from "react";
 
 const API_ROUTE = "http://localhost:8080"
 
