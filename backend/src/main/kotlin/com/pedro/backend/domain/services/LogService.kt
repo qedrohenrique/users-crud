@@ -1,8 +1,8 @@
-package com.pedro.backend.services
+package com.pedro.backend.domain.services
 
-import com.pedro.backend.dto.LogDto
-import com.pedro.backend.models.LogEntry
-import com.pedro.backend.repositories.LogRepository
+import com.pedro.backend.domain.dto.LogDto
+import com.pedro.backend.domain.models.LogEntry
+import com.pedro.backend.domain.repositories.LogRepository
 import org.springframework.cache.annotation.CacheEvict
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.data.domain.PageImpl

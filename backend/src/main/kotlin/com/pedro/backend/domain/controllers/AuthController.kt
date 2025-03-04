@@ -1,7 +1,7 @@
-package com.pedro.backend.controllers
+package com.pedro.backend.domain.controllers
 
 import com.pedro.backend.common.Login
-import com.pedro.backend.dto.JwtDto
+import com.pedro.backend.domain.dto.JwtDto
 import com.pedro.backend.security.JwtService
 import org.springframework.http.ResponseEntity
 import org.springframework.security.authentication.AuthenticationManager

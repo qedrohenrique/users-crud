@@ -1,6 +1,6 @@
 package com.pedro.backend.security
 
-import com.pedro.backend.models.User
+import com.pedro.backend.domain.models.User
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails

@@ -1,7 +1,7 @@
-package com.pedro.backend.controllers
+package com.pedro.backend.domain.controllers
 
-import com.pedro.backend.dto.LogDto
-import com.pedro.backend.services.LogService
+import com.pedro.backend.domain.dto.LogDto
+import com.pedro.backend.domain.services.LogService
 import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping

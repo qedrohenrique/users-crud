@@ -1,4 +1,4 @@
-package com.pedro.backend.dto
+package com.pedro.backend.domain.dto
 
 data class JwtDto (
     val token: String

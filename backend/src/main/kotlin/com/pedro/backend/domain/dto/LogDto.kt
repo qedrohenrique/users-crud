@@ -1,6 +1,6 @@
-package com.pedro.backend.dto
+package com.pedro.backend.domain.dto
 
-import com.pedro.backend.models.LogEntry
+import com.pedro.backend.domain.models.LogEntry
 import java.io.Serializable
 import java.time.LocalDateTime
 

@@ -1,6 +1,6 @@
-package com.pedro.backend.dto
+package com.pedro.backend.domain.dto
 
-import com.pedro.backend.models.User
+import com.pedro.backend.domain.models.User
 import java.io.Serializable
 
 data class UserDto (

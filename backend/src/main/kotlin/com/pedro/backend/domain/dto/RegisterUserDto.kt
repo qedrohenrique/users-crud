@@ -1,4 +1,4 @@
-package com.pedro.backend.dto
+package com.pedro.backend.domain.dto
 
 import com.pedro.backend.common.Role
 

@@ -1,6 +1,6 @@
 package com.pedro.backend.security
 
-import com.pedro.backend.repositories.UserRepository
+import com.pedro.backend.domain.repositories.UserRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException

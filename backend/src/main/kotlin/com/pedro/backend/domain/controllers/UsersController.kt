@@ -1,8 +1,8 @@
-package com.pedro.backend.controllers
+package com.pedro.backend.domain.controllers
 
-import com.pedro.backend.dto.RegisterUserDto
-import com.pedro.backend.dto.UserDto
-import com.pedro.backend.services.UserService
+import com.pedro.backend.domain.dto.RegisterUserDto
+import com.pedro.backend.domain.dto.UserDto
+import com.pedro.backend.domain.services.UserService
 import org.springframework.data.domain.Page
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

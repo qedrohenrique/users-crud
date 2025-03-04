@@ -1,10 +1,10 @@
-package com.pedro.backend.services
+package com.pedro.backend.domain.services
 
 import com.pedro.backend.common.Role
-import com.pedro.backend.dto.RegisterUserDto
-import com.pedro.backend.dto.UserDto
-import com.pedro.backend.models.User
-import com.pedro.backend.repositories.UserRepository
+import com.pedro.backend.domain.dto.RegisterUserDto
+import com.pedro.backend.domain.dto.UserDto
+import com.pedro.backend.domain.models.User
+import com.pedro.backend.domain.repositories.UserRepository
 import org.springframework.cache.annotation.CacheEvict
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.data.domain.PageImpl

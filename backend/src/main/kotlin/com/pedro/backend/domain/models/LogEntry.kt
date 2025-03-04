@@ -1,4 +1,4 @@
-package com.pedro.backend.models
+package com.pedro.backend.domain.models
 
 import jakarta.persistence.*
 import java.time.LocalDateTime

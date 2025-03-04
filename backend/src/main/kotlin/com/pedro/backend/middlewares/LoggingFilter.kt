@@ -1,6 +1,6 @@
 package com.pedro.backend.middlewares
 
-import com.pedro.backend.services.LogService
+import com.pedro.backend.domain.services.LogService
 import com.pedro.backend.common.utils.CachedBodyHttpServletRequest
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
