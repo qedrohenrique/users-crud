@@ -14,15 +14,11 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params,
 }: {
   children: React.ReactNode
-  params: { locale: 'en' | 'pt' }
 }) {
-  const locale = (await params).locale
-
   return (
-    <html lang={locale}>
+    <html>
       <body
         className={`${inter.variable} antialiased`}
       >

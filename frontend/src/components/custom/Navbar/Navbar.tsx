@@ -7,6 +7,7 @@ import LoadingIcon from "../LoadingIcon/LoadingIcon";
 import LocaleToggle from "../LocaleToggle/LocaleToggle";
 import Logo from "../Logo/Logo";
 import ModeToggle from "../ModeToggle/ModeToggle";
+import Link from "next/link";
 
 const Navbar = () => {
   const deleteMutation = useDeleteCookie();
@@ -18,9 +19,9 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 bg-white dark:bg-black z-[50] shadow-md dark:shadow-sm dark:shadow-white p-4">
       <div className="container mx-auto flex items-center justify-between">
-        <a href="/" className="text-xl font-bold">
+        <Link href="/" className="text-xl font-bold">
           <Logo />
-        </a>
+        </Link>
         <div className="flex space-x-4 ">
           <LocaleToggle />
           <ModeToggle />

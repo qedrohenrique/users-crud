@@ -67,7 +67,7 @@ export const useLogin = () => {
   });
 };
 
-export const useDeleteCookie = (): UseMutationResult<String> => {
+export const useDeleteCookie = (): UseMutationResult<string> => {
   const { setToken } = useAuth();
   const locale = useLocale();
   const router = useRouter();
