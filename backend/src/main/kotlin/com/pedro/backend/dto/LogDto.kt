@@ -1,6 +1,7 @@
 package com.pedro.backend.dto
 
 import com.pedro.backend.models.LogEntry
+import java.io.Serializable
 import java.time.LocalDateTime
 
 data class LogDto(
@@ -11,7 +12,7 @@ data class LogDto(
     val ip: String,
     val body: String,
     val createdAt: LocalDateTime
-) {
+): Serializable {
     companion object {
         fun fromLogEntry(log: LogEntry): LogDto {
             return LogDto(

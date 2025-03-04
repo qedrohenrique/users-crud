@@ -5,7 +5,9 @@ import com.pedro.backend.dto.RegisterUserDto
 import com.pedro.backend.dto.UserDto
 import com.pedro.backend.models.User
 import com.pedro.backend.repositories.UserRepository
-import org.springframework.data.domain.Page
+import org.springframework.cache.annotation.CacheEvict
+import org.springframework.cache.annotation.Cacheable
+import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.PageRequest
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -15,11 +17,18 @@ class UserService(
     private val userRepository: UserRepository,
     private val passwordEncoder: PasswordEncoder
 ) {
-    fun getAll(page: Int, size: Int): Page<UserDto> {
+    @Cacheable(value = ["users"], key = "#page + '-' + #size")
+    fun getAll(page: Int, size: Int): PageImpl<UserDto> {
         val pageable = PageRequest.of(page, size)
-        return userRepository.findAll(pageable).map { user -> UserDto.fromUser(user) }
+        val usersPage = userRepository.findAll(pageable).map { user -> UserDto.fromUser(user) }
+        return PageImpl(
+            usersPage.content,
+            usersPage.pageable,
+            usersPage.totalElements,
+        )
     }
 
+    @CacheEvict(value = ["users"], allEntries = true)
     fun createUser(registerUserDto: RegisterUserDto): UserDto {
         if (userRepository.findByUsername(registerUserDto.username) != null) {
             throw IllegalArgumentException("User already exists.")
@@ -32,6 +41,7 @@ class UserService(
         return UserDto.fromUser(userRepository.save(user))
     }
 
+    @CacheEvict(value = ["users"], allEntries = true)
     fun deleteUser(id: String) {
         val user = userRepository.findById(id.toLong()).get()
         userRepository.delete(user)
