@@ -14,9 +14,11 @@ export default function LocaleToggle() {
   const [isPending, startTransition] = useTransition();
 
   const changeLanguage = (lang: string) => {
+    const { locale, ...otherParams } = params;
+    const newParams = { ...otherParams, locale: lang };
     startTransition(() => {
       router.replace(
-        { pathname, query: params },
+        { pathname, query: newParams },
         { locale: lang }
       );
     });
