@@ -1,7 +1,8 @@
 package com.pedro.backend.middlewares
 
-import com.pedro.backend.domain.services.LogService
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.pedro.backend.common.utils.CachedBodyHttpServletRequest
+import com.pedro.backend.messaging.LogMessageProducer
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -10,7 +11,10 @@ import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 
 @Component
-class LoggingFilter(private val logService: LogService) : OncePerRequestFilter() {
+class LoggingFilter(
+    private val messageProducer: LogMessageProducer,
+    private val objectMapper: ObjectMapper
+) : OncePerRequestFilter() {
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
@@ -23,8 +27,19 @@ class LoggingFilter(private val logService: LogService) : OncePerRequestFilter()
         val ip = request.remoteAddr
         val username = SecurityContextHolder.getContext().authentication?.name
         val requestBody = wrappedRequest.getBodyAsString()
+        
+        val logData = mapOf(
+            "method" to method,
+            "path" to path,
+            "ip" to ip,
+            "username" to username,
+            "body" to requestBody
+        )
 
-        logService.saveLog(method, path, username, ip, requestBody)
+        val messageJson = objectMapper.writeValueAsString(logData)
 
-        filterChain.doFilter(wrappedRequest, response)    }
+        messageProducer.sendMessage(messageJson)
+
+        filterChain.doFilter(wrappedRequest, response)
+    }
 }
