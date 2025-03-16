@@ -15,7 +15,6 @@ class JwtService(
     private val jwtEncoder: JwtEncoder,
     private val jwtDecoder: JwtDecoder
 ) {
-
     fun generateToken(authentication: Authentication): String {
         val now: Instant = Instant.now()
         val tokenLifetime = 36000L
