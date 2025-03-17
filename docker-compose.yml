@@ -2,11 +2,23 @@ version: '3.8'
 services:
   postgres:
     image: postgres:16
-    container_name: my_postgres
+    container_name: users_crud
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: pedro_db
+      POSTGRES_DB: users_crud
     ports:
       - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest

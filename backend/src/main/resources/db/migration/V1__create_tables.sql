@@ -1,0 +1,17 @@
+CREATE TABLE logs (
+    id SERIAL PRIMARY KEY,
+    method VARCHAR(10) NOT NULL,
+    path VARCHAR(255) NOT NULL,
+    username VARCHAR(255),
+    ip VARCHAR(45) NOT NULL,
+    body TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL
+);
