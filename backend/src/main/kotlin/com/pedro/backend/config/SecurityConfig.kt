@@ -59,8 +59,8 @@ class SecurityConfig {
             .cors { }
             .csrf { csrf -> csrf.disable() }
             .authorizeHttpRequests { auth ->
-            auth.requestMatchers(HttpMethod.POST, "/auth").permitAll()
-                .requestMatchers("/users/create" ,"/users/delete", "/users/list", "/logs/list").hasRole(Role.ADMIN.name)
+            auth.requestMatchers(HttpMethod.POST, "/users/create", "/auth").permitAll()
+                .requestMatchers("/users/delete", "/users/list", "/logs/list").hasRole(Role.ADMIN.name)
                 .anyRequest().authenticated()
             }
             .httpBasic(Customizer.withDefaults())

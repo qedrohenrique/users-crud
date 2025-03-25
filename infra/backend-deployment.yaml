@@ -33,3 +33,23 @@ spec:
                 secretKeyRef:
                   name: backend-secret
                   key: SPRING_DATASOURCE_PASSWORD
+            - name: REDIS_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: REDIS_HOST
+            - name: RABBITMQ_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: RABBITMQ_HOST
+            - name: RABBITMQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: RABBITMQ_USERNAME
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: backend-secret
+                  key: RABBITMQ_PASSWORD
