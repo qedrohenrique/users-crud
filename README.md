@@ -58,6 +58,21 @@ Then you can test, depending on your interest, by typing:
 ./gradlew testRelease
 ```
 
+### Frontend (WIP)
+
+There are both E2E tests and unit tests.
+For running E2E tests:
+```bash
+npm playwright:test
+# or through the ui
+npm playwright:ui
+```
+
+For running unit tests:
+```bash
+npm test
+```
+
 ## Tools
 
 ### Backend
@@ -80,6 +95,7 @@ Then you can test, depending on your interest, by typing:
 - TanStack Query
 - shadcn/ui
 - Zod
+- Playwright (WIP)
 
 ### Other
 - Docker
