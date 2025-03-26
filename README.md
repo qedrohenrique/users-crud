@@ -18,9 +18,8 @@ You should see, at least, resources for:
 
 ### Manually
 
-First of all, ensure you have both Postgres and RabbitMQ services running.
+First of all, ensure you have Postgres, RabbitMQ and Redis services running.
 You can run `docker compose up`.
-If you want to, you can also run a local redis server on your machine. But it's not required.
 
 For running the backend application, simply type:
 ```bash
@@ -40,7 +39,7 @@ npm install
 
 next dev
 # or
-npm run dev
+yarn dev
 ```
 
 ## Testing
@@ -63,14 +62,14 @@ Then you can test, depending on your interest, by typing:
 There are both E2E tests and unit tests.
 For running E2E tests:
 ```bash
-npm playwright:test
+yarn playwright:test
 # or through the ui
-npm playwright:ui
+yarn playwright:ui
 ```
 
 For running unit tests:
 ```bash
-npm test
+yarn test
 ```
 
 ## Tools

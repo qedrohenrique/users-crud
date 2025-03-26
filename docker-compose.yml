@@ -22,3 +22,8 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - 6379:6379
