@@ -7,14 +7,14 @@ import { useParams } from "next/navigation";
 import { useTransition } from "react";
 
 export default function LocaleToggle() {
-  const locale = useLocale();
+  const locale = useLocale();''
   const router = useRouter();
   const pathname = usePathname();
   const params = useParams();
   const [isPending, startTransition] = useTransition();
 
   const changeLanguage = (lang: string) => {
-    const { locale, ...otherParams } = params;
+    const { locale, ...otherParams } = params; 
     const newParams = { ...otherParams, locale: lang };
     startTransition(() => {
       router.replace(

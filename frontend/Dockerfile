@@ -2,10 +2,9 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
-
+RUN yarn install 
 COPY . .
-RUN npm run build
+RUN yarn build
 
 FROM node:18-alpine AS runner
 WORKDIR /app
@@ -18,4 +17,4 @@ COPY --from=builder /app/public ./public
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["yarn", "start"]

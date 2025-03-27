@@ -1,7 +1,5 @@
-
 import { AuthenticationMotion } from "@/components/custom/AuthenticationMotion/AuthenticationMotion";
 import LocaleToggle from "@/components/custom/LocaleToggle/LocaleToggle";
-import { LoginForm } from "@/components/custom/LoginForm/LoginForm";
 import Logo from "@/components/custom/Logo/Logo";
 import ModeToggle from "@/components/custom/ModeToggle/ModeToggle";
 import { useTranslations } from "next-intl";
