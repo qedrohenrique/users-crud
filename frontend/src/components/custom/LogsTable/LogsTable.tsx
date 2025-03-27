@@ -65,7 +65,7 @@ const LogsTable = () => {
             ))
             : (
               <TableRow>
-                <TableCell colSpan={4}>
+                <TableCell colSpan={6}>
                   <div className='w-full my-4 flex flex-row justify-center items-center'>
                     <LoadingIcon />
                   </div>

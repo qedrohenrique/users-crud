@@ -5,7 +5,8 @@
     "loginForm": {
       "login": "Login",
       "username": "Nome de suário",
-      "password": "Senha"
+      "password": "Senha",
+      "createAccount": "Criar conta"
     }
   },
   "HomePage": {

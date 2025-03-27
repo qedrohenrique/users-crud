@@ -3,7 +3,7 @@
 import { z } from "zod"
 
 const loginSchema = z.object({
-  username: z.string().min(2).max(50),
+  username: z.string().max(50),
   password: z.string(),
 })
 

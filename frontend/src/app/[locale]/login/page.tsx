@@ -1,4 +1,5 @@
 
+import { AuthenticationMotion } from "@/components/custom/AuthenticationMotion/AuthenticationMotion";
 import LocaleToggle from "@/components/custom/LocaleToggle/LocaleToggle";
 import { LoginForm } from "@/components/custom/LoginForm/LoginForm";
 import Logo from "@/components/custom/Logo/Logo";
@@ -25,11 +26,11 @@ export default function AuthPage() {
       <div className='w-full sm:w-1/2 flex flex-col items-center justify-center'>
         <div className='absolute top-0 right-0 m-4'>
           <div className="flex flex-row gap-2">
-          <ModeToggle />
-          <LocaleToggle />
+            <ModeToggle />
+            <LocaleToggle />
           </div>
         </div>
-        <LoginForm />
+        <AuthenticationMotion />
       </div>
     </div>
   );

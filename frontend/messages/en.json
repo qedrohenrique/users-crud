@@ -5,7 +5,8 @@
     "loginForm": {
       "login": "Login",
       "username": "Username",
-      "password": "Password"
+      "password": "Password",
+      "createAccount": "Create Account"
     }
   },
   "HomePage": {

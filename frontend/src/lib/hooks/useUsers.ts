@@ -5,12 +5,9 @@ import { User } from "../common-types/user";
 const API_ROUTE = "http://localhost:8080";
 
 const createUserRequest = async ({ username, email, password }: { username: string, email: string, password: string }) => {
-  const { token } = await fetch("/api/get-cookie").then((res) => res.json());
-
   const response = await fetch(`${API_ROUTE}/users/create`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json"
     },
     body: JSON.stringify({ username, password, email }),

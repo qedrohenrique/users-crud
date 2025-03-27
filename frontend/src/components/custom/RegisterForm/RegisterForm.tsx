@@ -11,38 +11,57 @@ import {
 } from "@/components/ui/form";
 import InputIcon from "@/components/ui/input-icon";
 import InputPassword from "@/components/ui/input-password";
-import loginSchema from "@/components/zod/loginSchema";
-import { useLogin } from "@/lib/hooks/useAuthenticate";
+import createUserSchema from "@/components/zod/createUserSchema";
+import { useToast } from "@/hooks/use-toast";
+import { useCreateUser } from "@/lib/hooks/useUsers";
 import { useDictionary } from "@/lib/providers/dictionary-provider";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { User } from "lucide-react";
+import { AtSign, User } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import LoadingIcon from "../LoadingIcon/LoadingIcon";
 
-interface LoginFormProps {
-  onBackToRegister: () => void;
+interface RegisterFormProps {
+  onBackToLogin: () => void;
 }
 
-export const LoginForm = ({ onBackToRegister }: LoginFormProps) => {
+export const RegisterForm = ({ onBackToLogin }: RegisterFormProps) => {
   const dictionary = useDictionary();
-  const loginMutation = useLogin();
+  const { toast } = useToast();
 
-  const form = useForm<z.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+  const onSuccess = () => {
+    toast({
+      title: dictionary.HomePage.addUserDialog.success,
+    });
+    onBackToLogin();
+  };
+
+  const onError = () => {
+    toast({
+      title: dictionary.HomePage.addUserDialog.error,
+      variant: "destructive",
+    });
+  };
+
+  const createUserMutation = useCreateUser(onSuccess, onError);
+
+  const handleRegister = (data: z.infer<typeof createUserSchema>) => {
+    createUserMutation.mutate({ ...data });
+  };
+
+  const form = useForm<z.infer<typeof createUserSchema>>({
+    resolver: zodResolver(createUserSchema),
     defaultValues: {
       username: "",
+      email: "",
       password: "",
     },
+    reValidateMode: "onSubmit",
   });
-  
-  const onSubmit = ({ username, password }: z.infer<typeof loginSchema>) => {
-    loginMutation.mutate({ username, password });
-  };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8" autoComplete="off">
+      <form onSubmit={form.handleSubmit(handleRegister)} className="space-y-8" autoComplete="off">
         <FormField
           control={form.control}
           name="username"
@@ -51,6 +70,19 @@ export const LoginForm = ({ onBackToRegister }: LoginFormProps) => {
               <FormLabel>{dictionary.AuthPage.loginForm.username}</FormLabel>
               <FormControl>
                 <InputIcon icon={<User />} placeholder={dictionary.AuthPage.loginForm.username} autoComplete="off" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{dictionary.HomePage.addUserDialog.email}</FormLabel>
+              <FormControl>
+                <InputIcon icon={<AtSign />} placeholder={dictionary.HomePage.addUserDialog.email} autoComplete="off" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -70,19 +102,18 @@ export const LoginForm = ({ onBackToRegister }: LoginFormProps) => {
           )}
         />
         <div className="flex flex-row justify-end gap-4">
-          <Button variant="ghost" type="button" onClick={onBackToRegister}>
-            {dictionary.AuthPage.loginForm.createAccount}
+          <Button variant="ghost" type="button" onClick={onBackToLogin}>
+            {dictionary.AuthPage.loginForm.login}
           </Button>
           <Button type="submit">
-            {loginMutation.isPending ? (
+            {createUserMutation.isPending ? (
               <LoadingIcon override='text-primary-foreground' />
             ) : (
-              dictionary.AuthPage.loginForm.login
+              dictionary.AuthPage.loginForm.createAccount
             )}
           </Button>
         </div>
       </form>
     </Form>
   );
-};
-
+}; 
