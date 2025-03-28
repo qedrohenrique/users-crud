@@ -73,7 +73,7 @@ export const LoginForm = ({ onBackToRegister }: LoginFormProps) => {
           <Button variant="ghost" type="button" onClick={onBackToRegister}>
             {dictionary.AuthPage.loginForm.createAccount}
           </Button>
-          <Button type="submit">
+          <Button type="submit" data-testid="login-button" disabled={loginMutation.isPending}>
             {loginMutation.isPending ? (
               <LoadingIcon override='text-primary-foreground' />
             ) : (
