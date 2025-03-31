@@ -93,7 +93,9 @@ yarn test
   - APIs
 - TanStack Query
 - shadcn/ui
+- React Hook Form
 - Zod
+- Vitest
 - Playwright (WIP)
 
 ### Other

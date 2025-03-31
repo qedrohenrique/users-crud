@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
 
 jobs:
@@ -12,10 +12,10 @@ jobs:
 
     steps:
       - name: Checkout do repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Iniciar serviços com Docker Compose
-        run: docker-compose up -d
+        run: docker compose up -d
 
       - name: Aguardar serviços ficarem disponíveis
         run: sleep 15
