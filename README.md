@@ -57,10 +57,11 @@ Then you can test, depending on your interest, by typing:
 ./gradlew testRelease
 ```
 
-### Frontend (WIP)
+### Frontend
 
 There are both E2E tests and unit tests.
-For running E2E tests:
+For running E2E tests, but ensure that your database has runned flyway migrations.
+Also, CI/CD isn't running these.
 ```bash
 yarn playwright:test
 # or through the ui
@@ -96,11 +97,12 @@ yarn test
 - React Hook Form
 - Zod
 - Vitest
-- Playwright (WIP)
+- Playwright
 
 ### Other
 - Docker
 - k8s
 - Tilt
+- GitHub Actions
 
 Hugely inspired by [person-crud](https://github.com/KozielGPC/person-crud).
