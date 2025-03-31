@@ -27,7 +27,7 @@ const LogsTable = () => {
   }, [data])
 
   return (
-    <div className="space-y-4 flex flex-col justify-between h-72">
+    <div className="space-y-4 flex flex-col justify-between h-72" data-testid="logs-table">
       <div className='flex flex-row justify-end items-center w-full'>
         <Button onClick={() => refetch()}><RefreshCcw /></Button>
       </div>

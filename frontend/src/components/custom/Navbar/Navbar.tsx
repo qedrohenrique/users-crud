@@ -25,7 +25,7 @@ const Navbar = () => {
         <div className="flex space-x-4 ">
           <LocaleToggle />
           <ModeToggle />
-          <Button onClick={onLogoutClick} variant='outline' className="px-0 size-9">
+          <Button onClick={onLogoutClick} variant='outline' className="px-0 size-9" data-testid="logout-button">
             {deleteMutation.isPending ? <LoadingIcon /> : <LogOut />}
           </Button>
         </div>

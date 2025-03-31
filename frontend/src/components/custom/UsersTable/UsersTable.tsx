@@ -27,7 +27,7 @@ const UsersTable = () => {
   }, [data])
 
   return (
-    <div className="space-y-4 flex flex-col justify-between h-72">
+    <div className="space-y-4 flex flex-col justify-between h-72" data-testid="users-table">
       <div className='flex flex-row justify-between items-center w-full'>
         <div className='flex flex-row gap-4'>
           <CreateUserDialog refetch={refetch} />
