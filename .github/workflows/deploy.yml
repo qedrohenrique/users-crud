@@ -14,16 +14,24 @@ jobs:
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Iniciar serviços com Docker Compose
+      - name: Start services with Docker Compose
         run: docker compose up -d
 
-      - name: Aguardar serviços ficarem disponíveis
+      - name: Wait for services to be available
         run: sleep 15
 
-      - name: Executar migrations com Flyway
+      - name: Execute migrations with Flyway
         working-directory: backend
         run: ./gradlew flywayMigrate
 
-      - name: Executar testes do Spring Boot
+      - name: Execute Spring Boot tests
         working-directory: backend
         run: ./gradlew test
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm install
+
+      - name: Execute Vitest tests
+        working-directory: frontend
+        run: npm run test
