@@ -1,0 +1,29 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
+
+      - name: Iniciar serviços com Docker Compose
+        run: docker-compose up -d
+
+      - name: Aguardar serviços ficarem disponíveis
+        run: sleep 15
+
+      - name: Executar migrations com Flyway
+        working-directory: backend
+        run: ./gradlew flywayMigrate
+
+      - name: Executar testes do Spring Boot
+        working-directory: backend
+        run: ./gradlew test
