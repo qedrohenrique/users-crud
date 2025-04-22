@@ -73,7 +73,7 @@ For running unit tests:
 yarn test
 ```
 
-## Tools
+## Stack
 
 ### Backend
 - Spring Boot with Kotlin
@@ -105,4 +105,4 @@ yarn test
 - Tilt
 - GitHub Actions
 
-Hugely inspired by [person-crud](https://github.com/KozielGPC/person-crud).
+Inspired by [person-crud](https://github.com/KozielGPC/person-crud).
