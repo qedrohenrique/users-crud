@@ -118,7 +118,7 @@ export function CreateUserDialog({ refetch }: CreateUserDialogProps) {
                 <FormItem>
                   <FormLabel>{dictionary.HomePage.addUserDialog.password}</FormLabel>
                   <FormControl>
-                    <InputPassword {...field} id="password" placeholder={dictionary.HomePage.addUserDialog.password} className="col-span-3" />
+                    <InputPassword {...field} id="password" placeholder={dictionary.HomePage.addUserDialog.password}  />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
