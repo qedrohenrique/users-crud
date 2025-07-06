@@ -38,6 +38,12 @@
 
 users-crud is a comprehensive user management microservice that enables seamless creation, retrieval, updating, and deletion of user data within a scalable architecture. Leveraging modern tools like Spring Boot, Next.js, and Kubernetes, it provides a robust foundation for user operations, authentication, and real-time logging.
 
+## Demo
+
+User creation and real-time logging demo:
+
+![](demo.mp4)
+
 ## Features
 
 <ul class="list-disc pl-4 my-0">
@@ -52,7 +58,13 @@ users-crud is a comprehensive user management microservice that enables seamless
 
 ### Using [Tilt toolkit](https://tilt.dev)
 
-You can easily run all k8s clusters by simply typing on your shell `tilt up`.
+Ensure you have a kind cluster created:
+
+```bash
+kind create cluster
+```
+
+Then you can easily run all k8s clusters by simply typing on your shell `tilt up`.
 You should see, at least, resources for:
 - Frontend application
 - Backend application
