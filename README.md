@@ -40,9 +40,7 @@ users-crud is a comprehensive user management microservice that enables seamless
 
 ## Demo
 
-User creation and real-time logging demo:
-
-![](demo.mp4)
+https://github.com/user-attachments/assets/b1a1862b-9357-447b-a450-9f8293d4a4f3
 
 ## Features
 
