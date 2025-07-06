@@ -62,7 +62,7 @@ Ensure you have a kind cluster created:
 kind create cluster
 ```
 
-Then you can easily run all k8s clusters by simply typing on your shell `tilt up`.
+Then you can easily run all k8s nodes by simply typing on your shell `tilt up`.
 You should see, at least, resources for:
 - Frontend application
 - Backend application
