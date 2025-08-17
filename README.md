@@ -8,7 +8,7 @@
   ![repo-top-language](https://img.shields.io/github/languages/top/qedrohenrique/users-crud?style=flat&color=0080ff)
   ![repo-language-count](https://img.shields.io/github/languages/count/qedrohenrique/users-crud?style=flat&color=0080ff)
 
-  *Built with the tools and technologies:*
+  *Built with these tools and technologies:*
   
   ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6.svg?style=flat&logo=TypeScript&logoColor=white)
   ![Next JS](https://img.shields.io/badge/Next-black?style=flat&logo=next.js&logoColor=white)
